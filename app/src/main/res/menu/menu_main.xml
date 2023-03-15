@@ -2,25 +2,25 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/sessionsFragment"
-        android:icon="@drawable/ic_launcher_foreground"
+        android:icon="@drawable/ic_sessions"
         android:enabled="true"
         android:title="@string/sessions"/>
 
     <item
         android:id="@+id/awardsFragment"
-        android:icon="@drawable/ic_launcher_foreground"
+        android:icon="@drawable/ic_awards"
         android:enabled="true"
         android:title="@string/awards"/>
 
     <item
         android:id="@+id/activitiesFragment"
-        android:icon="@drawable/ic_launcher_foreground"
+        android:icon="@drawable/ic_activites"
         android:enabled="true"
         android:title="@string/activities"/>
 
     <item
         android:id="@+id/nearestSessionsFragment"
-        android:icon="@drawable/ic_launcher_foreground"
+        android:icon="@drawable/ic_nearest"
         android:enabled="true"
         android:title="@string/nearest"/>
 

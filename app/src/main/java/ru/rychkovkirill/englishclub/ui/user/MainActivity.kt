@@ -1,7 +1,8 @@
-package ru.rychkovkirill.englishclub
+package ru.rychkovkirill.englishclub.ui.user
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import ru.rychkovkirill.englishclub.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

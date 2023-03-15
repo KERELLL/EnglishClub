@@ -1,10 +1,9 @@
 <resources>
     <string name="app_name">EnglishClub</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="sessions">Sessions</string>
-    <string name="awards">Awards</string>
-    <string name="activities">Activities</string>
-    <string name="news">News</string>
-    <string name="nearest">Nearest</string>
+    <string name="sessions">Мои смены</string>
+    <string name="awards">Достижения</string>
+    <string name="activities">Задания</string>
+    <string name="news">Новости</string>
+    <string name="nearest">Я еду</string>
 </resources>
