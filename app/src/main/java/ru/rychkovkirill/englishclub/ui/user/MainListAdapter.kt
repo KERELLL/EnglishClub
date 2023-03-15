@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import ru.rychkovkirill.englishclub.R
 import ru.rychkovkirill.englishclub.domain.models.Menu
 
-class MainListAdapter : RecyclerView.Adapter<MainListAdapter.MainViewHolder>() {
+class MainListAdapter() : RecyclerView.Adapter<MainListAdapter.MainViewHolder>() {
 
     var menuList = listOf<Menu>(
         Menu("Title", "Name", "Date"),
@@ -26,6 +26,8 @@ class MainListAdapter : RecyclerView.Adapter<MainListAdapter.MainViewHolder>() {
             notifyDataSetChanged()
         }
 
+    var onItemSelectListener: ((Menu) -> Unit)? = null
+
     class MainViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val tvTitle = itemView.findViewById<TextView>(R.id.title)
         val tvName = itemView.findViewById<TextView>(R.id.name)
@@ -41,6 +43,9 @@ class MainListAdapter : RecyclerView.Adapter<MainListAdapter.MainViewHolder>() {
         holder.tvTitle.text = menuList[position].title
         holder.tvName.text = menuList[position].name
         holder.tvDate.text = menuList[position].date
+        holder.itemView.setOnClickListener {
+            onItemSelectListener?.invoke(menuList[position])
+        }
     }
 
     override fun getItemCount(): Int {

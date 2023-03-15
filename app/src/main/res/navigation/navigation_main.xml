@@ -14,7 +14,11 @@
         android:id="@+id/awardsFragment"
         android:name="ru.rychkovkirill.englishclub.ui.user.awards.AwardsFragment"
         android:label="fragment_awards"
-        tools:layout="@layout/fragment_awards" />
+        tools:layout="@layout/fragment_awards" >
+        <action
+            android:id="@+id/action_awardsFragment_to_awardsDetailsFragment"
+            app:destination="@id/awardsDetailsFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/activitiesFragment"
@@ -32,4 +36,9 @@
         android:name="ru.rychkovkirill.englishclub.ui.user.NewsFragment"
         android:label="fragment_news"
         tools:layout="@layout/fragment_news" />
+    <fragment
+        android:id="@+id/awardsDetailsFragment"
+        android:name="ru.rychkovkirill.englishclub.ui.user.awards.AwardsDetailsFragment"
+        android:label="fragment_awards_details"
+        tools:layout="@layout/fragment_awards_details" />
 </navigation>

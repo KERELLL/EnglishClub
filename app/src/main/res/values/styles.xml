@@ -3,4 +3,9 @@
     <style name="BottomNavigationView" parent="@style/TextAppearance.AppCompat.Caption">
         <item name="android:textSize">7sp</item>
     </style>
+
+    <style name="TextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeColor">#bfc2c7</item>
+        <item name="boxStrokeWidth">2dp</item>
+    </style>
 </resources>
