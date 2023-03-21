@@ -6,4 +6,6 @@
     <string name="activities">Задания</string>
     <string name="news">Новости</string>
     <string name="nearest">Я еду</string>
+    <string name="create_account"><u>У вас нет аккаунта? Создайте</u></string>
+    <string name="sign_in_account"><u>У вас уже есть аккаунт? Войдите</u></string>
 </resources>
