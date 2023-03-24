@@ -4,6 +4,7 @@ import android.content.Context
 import dagger.BindsInstance
 import dagger.Component
 import ru.rychkovkirill.englishclub.App
+import ru.rychkovkirill.englishclub.ui.SplashActivity
 import ru.rychkovkirill.englishclub.ui.user.auth.LoginFragment
 import ru.rychkovkirill.englishclub.ui.user.auth.RegisterFragment
 import javax.inject.Singleton
@@ -15,6 +16,8 @@ import javax.inject.Singleton
 interface AppComponent {
 
     fun inject(app: App)
+
+    fun inject(splashActivity: SplashActivity)
 
     fun inject(loginFragment: LoginFragment)
 

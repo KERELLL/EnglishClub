@@ -17,4 +17,6 @@ interface AuthRepository {
     ) : OperationResult<Token, String?>
 
     suspend fun login(username: String, password: String) : OperationResult<Token, String?>
+
+    fun getUser(): List<String>?
 }

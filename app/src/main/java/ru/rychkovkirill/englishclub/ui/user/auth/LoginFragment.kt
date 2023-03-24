@@ -13,7 +13,6 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import ru.rychkovkirill.englishclub.App
 import ru.rychkovkirill.englishclub.R
-import ru.rychkovkirill.englishclub.databinding.FragmentAwardsBinding
 import ru.rychkovkirill.englishclub.databinding.FragmentLoginBinding
 import ru.rychkovkirill.englishclub.ui.ViewModelFactory
 import ru.rychkovkirill.englishclub.ui.ViewState

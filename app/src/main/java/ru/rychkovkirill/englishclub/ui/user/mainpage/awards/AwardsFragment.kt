@@ -1,4 +1,4 @@
-package ru.rychkovkirill.englishclub.ui.user.awards
+package ru.rychkovkirill.englishclub.ui.user.mainpage.awards
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import ru.rychkovkirill.englishclub.R
 import ru.rychkovkirill.englishclub.databinding.FragmentAwardsBinding
-import ru.rychkovkirill.englishclub.ui.user.MainListAdapter
+import ru.rychkovkirill.englishclub.ui.user.mainpage.MainListAdapter
 
 
 class AwardsFragment : Fragment() {

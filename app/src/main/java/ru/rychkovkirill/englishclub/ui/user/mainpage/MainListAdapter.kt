@@ -1,4 +1,4 @@
-package ru.rychkovkirill.englishclub.ui.user
+package ru.rychkovkirill.englishclub.ui.user.mainpage
 
 import android.view.LayoutInflater
 import android.view.View

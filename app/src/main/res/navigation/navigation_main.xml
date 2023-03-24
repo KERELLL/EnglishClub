@@ -7,12 +7,16 @@
 
     <fragment
         android:id="@+id/sessionsFragment"
-        android:name="ru.rychkovkirill.englishclub.ui.user.SessionsFragment"
+        android:name="ru.rychkovkirill.englishclub.ui.user.mainpage.sessions.SessionsFragment"
         android:label="fragment_sessions"
-        tools:layout="@layout/fragment_sessions" />
+        tools:layout="@layout/fragment_sessions" >
+        <action
+            android:id="@+id/action_sessionsFragment_to_sessionsDetailsFragment"
+            app:destination="@id/sessionsDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/awardsFragment"
-        android:name="ru.rychkovkirill.englishclub.ui.user.awards.AwardsFragment"
+        android:name="ru.rychkovkirill.englishclub.ui.user.mainpage.awards.AwardsFragment"
         android:label="fragment_awards"
         tools:layout="@layout/fragment_awards" >
         <action
@@ -22,23 +26,55 @@
 
     <fragment
         android:id="@+id/activitiesFragment"
-        android:name="ru.rychkovkirill.englishclub.ui.user.ActivitiesFragment"
+        android:name="ru.rychkovkirill.englishclub.ui.user.mainpage.activities.ActivitiesFragment"
         android:label="fragment_activities"
-        tools:layout="@layout/fragment_activities" />
+        tools:layout="@layout/fragment_activities" >
+        <action
+            android:id="@+id/action_activitiesFragment_to_activitiesDetailsFragment"
+            app:destination="@id/activitiesDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/nearestSessionsFragment"
-        android:name="ru.rychkovkirill.englishclub.ui.user.NearestSessionsFragment"
+        android:name="ru.rychkovkirill.englishclub.ui.user.mainpage.nearestsessions.NearestSessionsFragment"
         android:label="fragment_nearest_sessions"
-        tools:layout="@layout/fragment_nearest_sessions" />
+        tools:layout="@layout/fragment_nearest_sessions" >
+        <action
+            android:id="@+id/action_nearestSessionsFragment_to_nearestSessionsDetailsFragment"
+            app:destination="@id/nearestSessionsDetailsFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/newsFragment"
-        android:name="ru.rychkovkirill.englishclub.ui.user.NewsFragment"
+        android:name="ru.rychkovkirill.englishclub.ui.user.mainpage.news.NewsFragment"
         android:label="fragment_news"
-        tools:layout="@layout/fragment_news" />
+        tools:layout="@layout/fragment_news" >
+        <action
+            android:id="@+id/action_newsFragment_to_newsDetailsFragment"
+            app:destination="@id/newsDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/awardsDetailsFragment"
-        android:name="ru.rychkovkirill.englishclub.ui.user.awards.AwardsDetailsFragment"
+        android:name="ru.rychkovkirill.englishclub.ui.user.mainpage.awards.AwardsDetailsFragment"
         android:label="fragment_awards_details"
         tools:layout="@layout/fragment_awards_details" />
+    <fragment
+        android:id="@+id/activitiesDetailsFragment"
+        android:name="ru.rychkovkirill.englishclub.ui.user.mainpage.activities.ActivitiesDetailsFragment"
+        android:label="fragment_activities_details"
+        tools:layout="@layout/fragment_activities_details" />
+    <fragment
+        android:id="@+id/nearestSessionsDetailsFragment"
+        android:name="ru.rychkovkirill.englishclub.ui.user.mainpage.nearestsessions.NearestSessionsDetailsFragment"
+        android:label="fragment_nearest_sessions_details"
+        tools:layout="@layout/fragment_nearest_sessions_details" />
+    <fragment
+        android:id="@+id/newsDetailsFragment"
+        android:name="ru.rychkovkirill.englishclub.ui.user.mainpage.news.NewsDetailsFragment"
+        android:label="fragment_news_details"
+        tools:layout="@layout/fragment_news_details" />
+    <fragment
+        android:id="@+id/sessionsDetailsFragment"
+        android:name="ru.rychkovkirill.englishclub.ui.user.mainpage.sessions.SessionsDetailsFragment"
+        android:label="fragment_sessions_details"
+        tools:layout="@layout/fragment_sessions_details" />
 </navigation>

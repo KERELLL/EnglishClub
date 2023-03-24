@@ -5,6 +5,7 @@ import kotlinx.coroutines.withContext
 import org.json.JSONObject
 import retrofit2.HttpException
 import ru.rychkovkirill.englishclub.data.ApiService
+import ru.rychkovkirill.englishclub.data.PrefsStorage
 import ru.rychkovkirill.englishclub.data.models.LoginRequestDTO
 import ru.rychkovkirill.englishclub.data.models.RegisterRequestDTO
 import ru.rychkovkirill.englishclub.data.models.toToken
@@ -15,7 +16,8 @@ import java.io.IOException
 import javax.inject.Inject
 
 class AuthRepositoryImpl @Inject constructor(
-    private val apiService: ApiService
+    private val apiService: ApiService,
+    private val prefsStorage: PrefsStorage
 ) : AuthRepository {
 
     override suspend fun register(
@@ -79,6 +81,11 @@ class AuthRepositoryImpl @Inject constructor(
 //                return@withContext OperationResult.Error("Неизвестная ошибка")
 //            }
 //        }
+        prefsStorage.saveToSharedPreferences(username, "u")
         return OperationResult.Success(Token("", "", ""))
+    }
+
+    override fun getUser(): List<String>? {
+        return prefsStorage.getUser()
     }
 }
