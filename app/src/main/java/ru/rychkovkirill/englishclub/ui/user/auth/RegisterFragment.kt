@@ -61,13 +61,10 @@ class RegisterFragment : Fragment() {
             val firstName = binding.firstnameEditText.text.toString()
             val lastName = binding.lastNameEditText.text.toString()
             val username = binding.usernameEditText.text.toString()
-            val phone = binding.phoneEditText.text.toString()
-            val birthdate = binding.birthdateEditText.text.toString()
             val email = binding.emailEditText.text.toString()
             val password = binding.passwordEditText.text.toString()
             viewModel.register(
-                firstName, lastName, username, phone, birthdate, email, password, false
-            )
+                firstName, lastName, username, email, password, false)
         }
 
         binding.loginButton.setOnClickListener {

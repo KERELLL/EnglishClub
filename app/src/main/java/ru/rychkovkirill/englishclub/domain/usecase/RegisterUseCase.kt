@@ -12,12 +12,10 @@ class RegisterUseCase @Inject constructor(
         first_name: String,
         last_name: String,
         username: String,
-        birthday: String,
-        phone_number: String,
         email: String,
         password: String,
         is_admin: Boolean
     ): OperationResult<Token, String?> {
-        return authRepository.register(first_name, last_name, username, birthday, phone_number, email, password, is_admin)
+        return authRepository.register(first_name, last_name, username, email, password, is_admin)
     }
 }

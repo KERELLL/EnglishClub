@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nearestSessionsFragmentAdmin"
+        android:icon="@drawable/ic_nearest"
+        android:enabled="true"
+        android:title="Смены"/>
+
+    <item
+        android:id="@+id/activitiesFragmentAdmin"
+        android:icon="@drawable/ic_activites"
+        android:enabled="true"
+        android:title="@string/activities"/>
+
+    <item
+        android:id="@+id/usersFragment"
+        android:icon="@drawable/ic_people"
+        android:enabled="true"
+        android:title="@string/users"/>
+
+    <item
+        android:id="@+id/newsFragmentAdmin"
+        android:icon="@drawable/ic_news"
+        android:enabled="true"
+        android:title="@string/news"/>
+</menu>

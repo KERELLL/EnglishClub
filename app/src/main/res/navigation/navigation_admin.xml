@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_admin"
+    app:startDestination="@id/usersFragment">
+
+    <fragment
+        android:id="@+id/usersFragment"
+        android:name="ru.rychkovkirill.englishclub.ui.admin.users.UsersFragment"
+        android:label="fragment_users"
+        tools:layout="@layout/fragment_users" />
+    <fragment
+        android:id="@+id/newsFragmentAdmin"
+        android:name="ru.rychkovkirill.englishclub.ui.user.mainpage.news.NewsFragment"
+        android:label="fragment_news"
+        tools:layout="@layout/fragment_news" >
+        <action
+            android:id="@+id/action_newsFragmentAdmin_to_newsDetailsFragmentAdmin"
+            app:destination="@id/newsDetailsFragmentAdmin" />
+    </fragment>
+    <fragment
+        android:id="@+id/newsDetailsFragmentAdmin"
+        android:name="ru.rychkovkirill.englishclub.ui.user.mainpage.news.NewsDetailsFragment"
+        android:label="fragment_news_details"
+        tools:layout="@layout/fragment_news_details" >
+        <argument
+            android:name="news_id"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/activitiesFragmentAdmin"
+        android:name="ru.rychkovkirill.englishclub.ui.user.mainpage.activities.ActivitiesFragment"
+        android:label="fragment_activities"
+        tools:layout="@layout/fragment_activities" />
+    <fragment
+        android:id="@+id/nearestSessionsFragmentAdmin"
+        android:name="ru.rychkovkirill.englishclub.ui.user.mainpage.nearestsessions.NearestSessionsFragment"
+        android:label="fragment_nearest_sessions"
+        tools:layout="@layout/fragment_nearest_sessions" />
+</navigation>

@@ -8,4 +8,6 @@
     <string name="nearest">Я еду</string>
     <string name="create_account"><u>У вас нет аккаунта? Создайте</u></string>
     <string name="sign_in_account"><u>У вас уже есть аккаунт? Войдите</u></string>
+    <string name="users">Пользователи</string>
+    <string name="nearest_sessions_admin">Ближайшие смены</string>
 </resources>

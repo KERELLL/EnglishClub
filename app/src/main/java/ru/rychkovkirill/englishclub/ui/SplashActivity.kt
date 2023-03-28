@@ -8,6 +8,7 @@ import android.os.Bundle
 import ru.rychkovkirill.englishclub.App
 import ru.rychkovkirill.englishclub.R
 import ru.rychkovkirill.englishclub.domain.repository.AuthRepository
+import ru.rychkovkirill.englishclub.ui.admin.AdminMainActivity
 import ru.rychkovkirill.englishclub.ui.user.MainActivity
 import ru.rychkovkirill.englishclub.ui.user.auth.AuthActivity
 import javax.inject.Inject
@@ -30,21 +31,28 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
-        val intent = Intent(this, AuthActivity::class.java)
-        startActivity(intent)
-        finish()
+//        val intent = Intent(this, AuthActivity::class.java)
+//        startActivity(intent)
+//        finish()
 
-//        if(savedInstanceState == null){
-//            if(authRepository.getUser() == null){
-//                val intent = Intent(this, AuthActivity::class.java)
-//                startActivity(intent)
-//                finish()
-//            }else{
-//                val intent = Intent(this, MainActivity::class.java)
-//                startActivity(intent)
-//                finish()
-//            }
-//        }
+        if(savedInstanceState == null){
+            if(authRepository.getUser() == null){
+                val intent = Intent(this, AuthActivity::class.java)
+                startActivity(intent)
+                finish()
+            }else{
+                if(authRepository.getUser()!![2] == "ADMIN"){
+                    val intent = Intent(this, AdminMainActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                }else{
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                }
+
+            }
+        }
 
     }
 }

@@ -16,6 +16,7 @@ import ru.rychkovkirill.englishclub.R
 import ru.rychkovkirill.englishclub.databinding.FragmentLoginBinding
 import ru.rychkovkirill.englishclub.ui.ViewModelFactory
 import ru.rychkovkirill.englishclub.ui.ViewState
+import ru.rychkovkirill.englishclub.ui.admin.AdminMainActivity
 import ru.rychkovkirill.englishclub.ui.user.MainActivity
 import javax.inject.Inject
 
@@ -79,9 +80,15 @@ class LoginFragment : Fragment() {
                 }
                 is ViewState.Success -> {
                     binding.pbLogin.isVisible = false
-                    val intent = Intent(requireContext(), MainActivity::class.java)
-                    startActivity(intent)
-                    requireActivity().finish()
+                    if(it.result.isAdmin){
+                        val intent = Intent(requireContext(), AdminMainActivity::class.java)
+                        startActivity(intent)
+                        requireActivity().finish()
+                    }else{
+                        val intent = Intent(requireContext(), MainActivity::class.java)
+                        startActivity(intent)
+                        requireActivity().finish()
+                    }
                 }
             }
         }

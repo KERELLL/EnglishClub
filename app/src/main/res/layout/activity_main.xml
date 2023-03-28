@@ -43,6 +43,7 @@
         app:itemIconTint="@color/bnv_tab_item_color"
         app:itemTextColor="@color/bnv_tab_item_color"
         app:labelVisibilityMode="selected"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -112,65 +112,6 @@
                 android:textCursorDrawable="@color/black" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/phoneContainer"
-            style="@style/TextInputLayoutStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20sp"
-            android:layout_marginTop="4sp"
-            android:textColorHint="#bfc2c7"
-            app:boxStrokeWidth="2dp"
-            app:errorEnabled="true"
-            app:startIconDrawable="@drawable/ic_phone"
-            app:startIconTint="@color/black"
-            app:boxStrokeColor="#4885ed"
-            app:hintTextColor="#4885ed"
-            app:layout_constraintEnd_toEndOf="@id/usernameContainer"
-            app:layout_constraintStart_toStartOf="@id/usernameContainer"
-            app:layout_constraintTop_toBottomOf="@id/usernameContainer">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/phoneEditText"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:hint="Телефон"
-                android:inputType="phone"
-                android:lines="1"
-                android:textSize="18sp"
-                android:textColor="@color/black"
-                android:textCursorDrawable="@color/black" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/birthdateContainer"
-            style="@style/TextInputLayoutStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20sp"
-            android:layout_marginTop="4sp"
-            android:textColorHint="#bfc2c7"
-            app:boxStrokeWidth="2dp"
-            app:errorEnabled="true"
-            app:startIconTint="@color/black"
-            app:boxStrokeColor="#4885ed"
-            app:hintTextColor="#4885ed"
-            app:startIconDrawable="@drawable/ic_calendar"
-            app:layout_constraintEnd_toEndOf="@id/phoneContainer"
-            app:layout_constraintStart_toStartOf="@id/phoneContainer"
-            app:layout_constraintTop_toBottomOf="@id/phoneContainer">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/birthdateEditText"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:hint="День рождения"
-                android:inputType="date"
-                android:lines="1"
-                android:textSize="18sp"
-                android:textColor="@color/black"
-                android:textCursorDrawable="@color/black" />
-        </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/emailContainer"
@@ -186,9 +127,9 @@
             app:boxStrokeColor="#4885ed"
             app:hintTextColor="#4885ed"
             app:boxStrokeWidth="2dp"
-            app:layout_constraintEnd_toEndOf="@id/birthdateContainer"
-            app:layout_constraintStart_toStartOf="@id/birthdateContainer"
-            app:layout_constraintTop_toBottomOf="@id/birthdateContainer">
+            app:layout_constraintEnd_toEndOf="@id/usernameContainer"
+            app:layout_constraintStart_toStartOf="@id/usernameContainer"
+            app:layout_constraintTop_toBottomOf="@id/usernameContainer">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/emailEditText"
@@ -244,8 +185,6 @@
             android:textSize="20sp"
             app:backgroundTint="#4885ed"
             android:letterSpacing="0"
-            app:layout_constraintTop_toBottomOf="@id/passwordContainer"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintBottom_toTopOf="@id/loginButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
