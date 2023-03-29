@@ -18,6 +18,7 @@ import ru.rychkovkirill.englishclub.databinding.FragmentNewsBinding
 import ru.rychkovkirill.englishclub.domain.repository.AuthRepository
 import ru.rychkovkirill.englishclub.ui.ViewModelFactory
 import ru.rychkovkirill.englishclub.ui.ViewState
+import ru.rychkovkirill.englishclub.ui.user.mainpage.MainViewModel
 import javax.inject.Inject
 
 
@@ -27,7 +28,7 @@ class NewsFragment : Fragment() {
     private val binding: FragmentNewsBinding
         get() = _binding ?: throw RuntimeException("FragmentNewsBinding == null")
 
-    private lateinit var viewModel: NewsViewModel
+    private lateinit var viewModel: MainViewModel
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
@@ -50,7 +51,7 @@ class NewsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        viewModel = ViewModelProvider(this, viewModelFactory)[NewsViewModel::class.java]
+        viewModel = ViewModelProvider(this, viewModelFactory)[MainViewModel::class.java]
         _binding = FragmentNewsBinding.inflate(inflater, container, false)
         return binding.root
     }

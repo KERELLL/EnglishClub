@@ -6,7 +6,7 @@ import dagger.Module
 import dagger.multibindings.IntoMap
 import ru.rychkovkirill.englishclub.ui.admin.users.UsersViewModel
 import ru.rychkovkirill.englishclub.ui.user.auth.AuthViewModel
-import ru.rychkovkirill.englishclub.ui.user.mainpage.news.NewsViewModel
+import ru.rychkovkirill.englishclub.ui.user.mainpage.MainViewModel
 
 @Module
 interface ViewModelModule {
@@ -23,6 +23,6 @@ interface ViewModelModule {
 
     @Binds
     @IntoMap
-    @ViewModelKey(NewsViewModel::class)
-    fun bindNewsViewModel(newsViewModel: NewsViewModel) : ViewModel
+    @ViewModelKey(MainViewModel::class)
+    fun bindMainViewModel(mainViewModel: MainViewModel) : ViewModel
 }

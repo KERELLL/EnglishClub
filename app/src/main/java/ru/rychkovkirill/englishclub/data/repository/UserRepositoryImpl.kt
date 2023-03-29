@@ -58,4 +58,29 @@ class UserRepositoryImpl @Inject constructor(
             }
         }
     }
+
+    override suspend fun updateUser(
+        email: String,
+        first_name: String,
+        last_name: String,
+        username: String,
+        experience: Int?,
+        rank: String?,
+        hobby: String?,
+        media_link: String?
+    ): OperationResult<Unit, String?> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun updateMe(
+        first_name: String,
+        last_name: String,
+        username: String,
+        experience: Int?,
+        rank: String?,
+        hobby: String?,
+        media_link: String?
+    ): OperationResult<Unit, String?> {
+        TODO("Not yet implemented")
+    }
 }
