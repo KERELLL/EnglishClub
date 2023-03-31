@@ -1,5 +1,6 @@
 package ru.rychkovkirill.englishclub.ui.admin
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.fragment.NavHostFragment
@@ -8,6 +9,7 @@ import androidx.navigation.ui.setupWithNavController
 import ru.rychkovkirill.englishclub.R
 import ru.rychkovkirill.englishclub.databinding.ActivityAdminMainBinding
 import ru.rychkovkirill.englishclub.databinding.ActivityMainBinding
+import ru.rychkovkirill.englishclub.ui.profile.ProfileActivity
 
 class AdminMainActivity : AppCompatActivity() {
     private var _binding: ActivityAdminMainBinding? = null
@@ -25,5 +27,10 @@ class AdminMainActivity : AppCompatActivity() {
         val navController = navHost.findNavController()
 
         binding.bottomNavigationView.setupWithNavController(navController)
+
+        binding.profileButton.setOnClickListener {
+            val intent = Intent(this, ProfileActivity::class.java)
+            startActivity(intent)
+        }
     }
 }

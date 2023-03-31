@@ -1,7 +1,6 @@
-package ru.rychkovkirill.englishclub.ui.user.mainpage.activities
+package ru.rychkovkirill.englishclub.ui.admin.users
 
 import android.content.Context
-import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,26 +8,26 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.Navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import ru.rychkovkirill.englishclub.App
 import ru.rychkovkirill.englishclub.R
 import ru.rychkovkirill.englishclub.databinding.FragmentActivitiesDetailsBinding
-import ru.rychkovkirill.englishclub.databinding.FragmentNewsDetailsBinding
+import ru.rychkovkirill.englishclub.databinding.FragmentUserDetailsBinding
 import ru.rychkovkirill.englishclub.domain.repository.AuthRepository
 import ru.rychkovkirill.englishclub.ui.ViewModelFactory
 import ru.rychkovkirill.englishclub.ui.ViewState
 import ru.rychkovkirill.englishclub.ui.user.mainpage.MainViewModel
 import javax.inject.Inject
 
-class ActivitiesDetailsFragment : Fragment() {
 
-    private var _binding: FragmentActivitiesDetailsBinding? = null
-    private val binding: FragmentActivitiesDetailsBinding
-        get() = _binding ?: throw RuntimeException("FragmentActivitiesDetailsBinding == null")
+class UserDetailsFragment : Fragment() {
 
-    private lateinit var viewModel: MainViewModel
+    private var _binding: FragmentUserDetailsBinding? = null
+    private val binding: FragmentUserDetailsBinding
+        get() = _binding ?: throw RuntimeException("FragmentUserDetailsBinding == null")
+
+    private lateinit var viewModel: UsersViewModel
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
@@ -50,47 +49,33 @@ class ActivitiesDetailsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        viewModel = ViewModelProvider(this, viewModelFactory)[MainViewModel::class.java]
-        _binding = FragmentActivitiesDetailsBinding.inflate(inflater, container, false)
+        viewModel = ViewModelProvider(this, viewModelFactory)[UsersViewModel::class.java]
+        _binding = FragmentUserDetailsBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val title = requireArguments().getString("title")
-        val startDate = requireArguments().getString("startDate")
-        val endDate = requireArguments().getString("endDate")
-        val content = requireArguments().getString("content")
-        val points = requireArguments().getString("points")
-        val id = requireArguments().getString("id")
-        val isActive = requireArguments().getString("isActive")
-        subscribeResponseTask()
         setUpAdminUI()
-        if(isActive == "no"){
-            binding.tvDate.setTextColor(Color.RED)
-        }
-        binding.tvTitle.text = title
-        binding.tvDate.text = startDate!!.split('T')[0] + " - " + endDate!!.split('T')[0]
-        binding.tvContent.text = content
-        binding.tvPoints.text = points + " очков"
-
-        binding.responseTaskButton.setOnClickListener {
-            viewModel.responseTask(id!!.toInt())
-
-        }
+        subscribeUpdateUser()
+        fillUI()
     }
 
     private fun setUpAdminUI() {
-        if (authRepository.getUser()!![2] == "ADMIN") {
-            binding.responseTaskButton.isVisible = false
-        } else {
-            binding.responseTaskButton.isVisible = true
+        binding.updateUserButton.setOnClickListener {
+            val firstName = binding.firstnameEditText.text.toString()
+            val lastName = binding.lastNameEditText.text.toString()
+            val nickname = binding.usernameEditText.text.toString()
+            val mediaLink = binding.mediaLinkEditText.text.toString()
+            val email = requireArguments().getString("email")
+            if (email != null) {
+                viewModel.updateUser(email, firstName, lastName, nickname, mediaLink)
+            }
         }
     }
 
-
-    private fun subscribeResponseTask(){
-        viewModel.responseTaskResult.observe(viewLifecycleOwner) {
+    private fun subscribeUpdateUser(){
+        viewModel.updateUser.observe(viewLifecycleOwner) {
             when (it) {
                 is ViewState.Loading -> {
                 }
@@ -112,4 +97,17 @@ class ActivitiesDetailsFragment : Fragment() {
             }
         }
     }
+
+
+    private fun fillUI(){
+        val firstName = requireArguments().getString("firstName")
+        val lastName = requireArguments().getString("lastName")
+        val nickname = requireArguments().getString("nickname")
+        val media_link = requireArguments().getString("media_link")
+        binding.firstnameEditText.setText(firstName)
+        binding.lastNameEditText.setText(lastName)
+        binding.usernameEditText.setText(nickname)
+        binding.mediaLinkEditText.setText(media_link)
+    }
+
 }

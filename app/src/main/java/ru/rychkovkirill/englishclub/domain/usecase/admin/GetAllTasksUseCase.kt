@@ -1,4 +1,4 @@
-package ru.rychkovkirill.englishclub.domain.usecase
+package ru.rychkovkirill.englishclub.domain.usecase.admin
 
 import ru.rychkovkirill.englishclub.domain.OperationResult
 import ru.rychkovkirill.englishclub.domain.models.Task

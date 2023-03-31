@@ -2,15 +2,13 @@ package ru.rychkovkirill.englishclub.ui.user.mainpage.news
 
 import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
 import ru.rychkovkirill.englishclub.App
-import ru.rychkovkirill.englishclub.R
-import ru.rychkovkirill.englishclub.databinding.FragmentNewsBinding
 import ru.rychkovkirill.englishclub.databinding.FragmentNewsDetailsBinding
 import ru.rychkovkirill.englishclub.domain.repository.AuthRepository
 import ru.rychkovkirill.englishclub.ui.ViewModelFactory
@@ -55,7 +53,12 @@ class NewsDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         subscribeGetAllNews()
-
+        val title = requireArguments().getString("title")
+        val date = requireArguments().getString("date")
+        val content = requireArguments().getString("content")
+        binding.tvTitle.text = title
+        binding.tvDate.text = date
+        binding.tvContent.text = content
     }
 
     private fun subscribeGetAllNews(){

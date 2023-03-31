@@ -248,6 +248,28 @@ class MainRepositoryImpl @Inject constructor(
         }
     }
 
+    override suspend fun getActiveTasks(): OperationResult<List<Task>, String?> {
+        return withContext(Dispatchers.IO) {
+            try {
+                val tokenHeader = "Bearer ${prefsStorage.getUser()?.get(0).orEmpty()}"
+                val response = apiService.getActiveTask(tokenHeader)
+                if (response.isSuccessful && response.body() != null) {
+                    val result = response.body()!!.map {
+                        it.toTask()
+                    }
+                    return@withContext OperationResult.Success(result)
+                } else if (response.errorBody() != null) {
+                    val errorObj = JSONObject(response.errorBody()!!.charStream().readText())
+                    return@withContext OperationResult.Error(errorObj.getString("detail"))
+                } else {
+                    return@withContext OperationResult.Error("Что-то пошло не так!")
+                }
+            } catch (e: Exception){
+                return@withContext OperationResult.Error("Ошибка подключения")
+            }
+        }
+    }
+
     override suspend fun getTaskById(task_id: Int): OperationResult<Task, String?> {
         return withContext(Dispatchers.IO) {
             try {

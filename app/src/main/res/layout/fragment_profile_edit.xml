@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.profile.ProfileEditFragment">
+
+    <TextView
+        android:id="@+id/tv_title_update"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Обновление профиля"
+        android:layout_marginHorizontal="20sp"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/firstnameContainer"
+        style="@style/TextInputLayoutStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20sp"
+        android:layout_marginTop="10sp"
+        android:textColorHint="#bfc2c7"
+        app:startIconTint="@color/black"
+        app:errorEnabled="true"
+        app:boxStrokeColor="#4885ed"
+        app:hintTextColor="#4885ed"
+        app:boxStrokeWidth="2dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_title_update">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/firstnameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Имя"
+            android:inputType="text"
+            android:textSize="18sp"
+            android:lines="1"
+            android:textColor="@color/black"
+            android:textCursorDrawable="@color/black" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/lastNameContainer"
+        style="@style/TextInputLayoutStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20sp"
+        android:layout_marginTop="4sp"
+        android:textColorHint="#bfc2c7"
+        app:boxStrokeWidth="2dp"
+        app:errorEnabled="true"
+        app:startIconTint="@color/black"
+        app:boxStrokeColor="#4885ed"
+        app:hintTextColor="#4885ed"
+        app:layout_constraintEnd_toEndOf="@id/firstnameContainer"
+        app:layout_constraintStart_toStartOf="@id/firstnameContainer"
+        app:layout_constraintTop_toBottomOf="@id/firstnameContainer">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/lastNameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Фамилия"
+            android:inputType="text"
+            android:lines="1"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:textCursorDrawable="@color/black" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/usernameContainer"
+        style="@style/TextInputLayoutStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20sp"
+        android:layout_marginTop="10sp"
+        android:textColorHint="#bfc2c7"
+        app:startIconTint="@color/black"
+        app:errorEnabled="true"
+        app:boxStrokeColor="#4885ed"
+        app:hintTextColor="#4885ed"
+        app:boxStrokeWidth="2dp"
+        app:layout_constraintEnd_toEndOf="@id/lastNameContainer"
+        app:layout_constraintStart_toStartOf="@id/lastNameContainer"
+        app:layout_constraintTop_toBottomOf="@id/lastNameContainer">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/usernameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Никнейм"
+            android:inputType="text"
+            android:textSize="18sp"
+            android:lines="1"
+            android:textColor="@color/black"
+            android:textCursorDrawable="@color/black" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/mediaLinkContainer"
+        style="@style/TextInputLayoutStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20sp"
+        android:layout_marginTop="10sp"
+        android:textColorHint="#bfc2c7"
+        app:startIconTint="@color/black"
+        app:errorEnabled="true"
+        app:startIconDrawable="@drawable/ic_email"
+        app:boxStrokeColor="#4885ed"
+        app:hintTextColor="#4885ed"
+        app:boxStrokeWidth="2dp"
+        app:layout_constraintEnd_toEndOf="@id/usernameContainer"
+        app:layout_constraintStart_toStartOf="@id/usernameContainer"
+        app:layout_constraintTop_toBottomOf="@id/usernameContainer">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/mediaLinkEditText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Ссылка на контакты"
+            android:inputType="text"
+            android:textSize="18sp"
+            android:lines="1"
+            android:textColor="@color/black"
+            android:textCursorDrawable="@color/black" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/updateUserButton"
+        android:layout_width="match_parent"
+        android:layout_height="60sp"
+        android:layout_marginHorizontal="20sp"
+        android:text="Обновить"
+        android:textAllCaps="false"
+        android:textSize="20sp"
+        app:backgroundTint="#4885ed"
+        android:letterSpacing="0"
+        app:layout_constraintTop_toBottomOf="@id/mediaLinkContainer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

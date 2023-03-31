@@ -45,14 +45,14 @@ interface ApiService {
     suspend fun updateUser(
         @Header("Authorization") token : String,
         @Query("email") email : String,
-        @Body userResponseDTO: UserResponseDTO
+        @Body updateUserRequest: UpdateUserRequest
     ) : Response<SuccessResponse>
 
     // module user user
     @PUT("user/update-me")
     suspend fun updateMe(
         @Header("Authorization") token : String,
-        @Body userResponseDTO: UserResponseDTO
+        @Body updateUserRequest: UpdateUserRequest
     ) : Response<SuccessResponse>
 
     //news module
@@ -133,6 +133,11 @@ interface ApiService {
         @Header("Authorization") token : String,
         @Path("task_id") task_id: Int
     ) : Response<TaskResponse>
+
+    @GET("tasks/active")
+    suspend fun getActiveTask(
+        @Header("Authorization") token : String
+    ): Response<List<TaskResponse>>
 
     //Task module admin
 

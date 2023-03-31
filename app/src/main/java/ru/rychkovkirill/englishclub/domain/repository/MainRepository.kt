@@ -32,6 +32,8 @@ interface MainRepository {
 
     suspend fun getAllTasks() : OperationResult<List<Task>, String?>
 
+    suspend fun getActiveTasks() : OperationResult<List<Task>, String?>
+
     suspend fun getTaskById(task_id: Int) : OperationResult<Task, String?>
 
     suspend fun approveResponse(response_id: Int) : OperationResult<Unit, String?>

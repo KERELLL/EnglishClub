@@ -140,11 +140,20 @@ class NewsFragment : Fragment() {
     private fun setUpAdapter() {
         if (authRepository.getUser()!![2] == "ADMIN") {
             adapter.onItemSelectListener = {
-                findNavController().navigate(R.id.action_newsFragmentAdmin_to_newsDetailsFragmentAdmin)
+                val bundle = Bundle()
+                bundle.putString("title", it.title)
+                bundle.putString("date", it.created_at)
+                bundle.putString("content", it.content)
+
+                findNavController().navigate(R.id.action_newsFragmentAdmin_to_newsDetailsFragmentAdmin, bundle)
             }
         }else{
             adapter.onItemSelectListener = {
-                findNavController().navigate(R.id.action_newsFragment_to_newsDetailsFragment)
+                val bundle = Bundle()
+                bundle.putString("title", it.title)
+                bundle.putString("date", it.created_at)
+                bundle.putString("content", it.content)
+                findNavController().navigate(R.id.action_newsFragment_to_newsDetailsFragment, bundle)
             }
         }
 

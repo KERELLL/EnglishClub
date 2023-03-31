@@ -18,4 +18,6 @@ interface AuthRepository {
     suspend fun login(username: String, password: String) : OperationResult<User, String?>
 
     fun getUser(): List<String>?
+
+    fun logout()
 }

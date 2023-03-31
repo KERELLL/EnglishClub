@@ -36,7 +36,7 @@ class AuthRepositoryImpl @Inject constructor(
                 )
                 if (response.isSuccessful && response.body() != null) {
                     val result = response.body()!!.toToken()
-                    prefsStorage.saveToSharedPreferences(result.access_token, username, "USER", email)
+                    prefsStorage.saveToSharedPreferences(result.access_token, username, "USER", email, first_name, last_name, "")
                     return@withContext OperationResult.Success(result)
                 } else if (response.errorBody() != null) {
                     val errorObj = JSONObject(response.errorBody()!!.charStream().readText())
@@ -63,7 +63,12 @@ class AuthRepositoryImpl @Inject constructor(
                     if(result.isAdmin){
                         isAdmin = "ADMIN"
                     }
-                    prefsStorage.saveToSharedPreferences(result.token, result.username, isAdmin, result.email)
+                    if(result.media_link.isNullOrBlank()){
+                        prefsStorage.saveToSharedPreferences(result.token, result.username, isAdmin, result.email, result.first_name, result.last_name, "")
+                    }else{
+                        prefsStorage.saveToSharedPreferences(result.token, result.username, isAdmin, result.email, result.first_name, result.last_name, result.media_link)
+                    }
+
                     return@withContext OperationResult.Success(result)
                 } else if (response.errorBody() != null) {
                     val errorObj = JSONObject(response.errorBody()!!.charStream().readText())
@@ -79,5 +84,9 @@ class AuthRepositoryImpl @Inject constructor(
 
     override fun getUser(): List<String>? {
         return prefsStorage.getUser()
+    }
+
+    override fun logout() {
+        prefsStorage.saveToSharedPreferences("", "", "", "", "", "", "")
     }
 }

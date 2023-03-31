@@ -6,8 +6,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.user.auth.LoginFragment">
 
-
-
         <TextView
             android:id="@+id/loginTitleTextView"
             android:layout_width="match_parent"
@@ -43,7 +41,7 @@
                 android:id="@+id/emailEditText"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="Никнейм"
+                android:hint="Почта"
                 android:inputType="text"
                 android:textSize="18sp"
                 android:lines="1"

@@ -9,7 +9,11 @@
         android:id="@+id/usersFragment"
         android:name="ru.rychkovkirill.englishclub.ui.admin.users.UsersFragment"
         android:label="fragment_users"
-        tools:layout="@layout/fragment_users" />
+        tools:layout="@layout/fragment_users" >
+        <action
+            android:id="@+id/action_usersFragment_to_userDetailsFragment"
+            app:destination="@id/userDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/newsFragmentAdmin"
         android:name="ru.rychkovkirill.englishclub.ui.user.mainpage.news.NewsFragment"
@@ -24,18 +28,28 @@
         android:name="ru.rychkovkirill.englishclub.ui.user.mainpage.news.NewsDetailsFragment"
         android:label="fragment_news_details"
         tools:layout="@layout/fragment_news_details" >
-        <argument
-            android:name="news_id"
-            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/activitiesFragmentAdmin"
         android:name="ru.rychkovkirill.englishclub.ui.user.mainpage.activities.ActivitiesFragment"
         android:label="fragment_activities"
-        tools:layout="@layout/fragment_activities" />
+        tools:layout="@layout/fragment_activities" >
+        <action
+            android:id="@+id/action_activitiesFragmentAdmin_to_activitiesDetailsFragment2"
+            app:destination="@id/activitiesDetailsFragmentAdmin" />
+    </fragment>
     <fragment
         android:id="@+id/nearestSessionsFragmentAdmin"
         android:name="ru.rychkovkirill.englishclub.ui.user.mainpage.nearestsessions.NearestSessionsFragment"
         android:label="fragment_nearest_sessions"
         tools:layout="@layout/fragment_nearest_sessions" />
+    <fragment
+        android:id="@+id/activitiesDetailsFragmentAdmin"
+        android:name="ru.rychkovkirill.englishclub.ui.user.mainpage.activities.ActivitiesDetailsFragment"
+        android:label="ActivitiesDetailsFragment" />
+    <fragment
+        android:id="@+id/userDetailsFragment"
+        android:name="ru.rychkovkirill.englishclub.ui.admin.users.UserDetailsFragment"
+        android:label="fragment_user_details"
+        tools:layout="@layout/fragment_user_details" />
 </navigation>

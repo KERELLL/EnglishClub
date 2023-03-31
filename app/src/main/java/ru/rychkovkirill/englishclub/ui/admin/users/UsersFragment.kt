@@ -58,7 +58,18 @@ class UsersFragment : Fragment() {
 
     private fun setUpAdapter(){
         adapter.onItemSelectListener = {
-            findNavController().navigate(R.id.action_activitiesFragment_to_activitiesDetailsFragment)
+            val bundle = Bundle()
+            bundle.putString("firstName", it.first_name)
+            bundle.putString("lastName", it.last_name)
+            bundle.putString("nickname", it.username)
+            bundle.putString("email", it.email)
+            if(it.media_link.isNullOrBlank()){
+                bundle.putString("media_link", "")
+            }else{
+                bundle.putString("media_link", it.media_link)
+            }
+
+            findNavController().navigate(R.id.action_usersFragment_to_userDetailsFragment, bundle)
         }
         binding.rvUsersList.adapter = adapter
     }

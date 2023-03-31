@@ -6,6 +6,7 @@ import kotlinx.coroutines.withContext
 import org.json.JSONObject
 import ru.rychkovkirill.englishclub.data.ApiService
 import ru.rychkovkirill.englishclub.data.PrefsStorage
+import ru.rychkovkirill.englishclub.data.models.UpdateUserRequest
 import ru.rychkovkirill.englishclub.data.models.toUser
 import ru.rychkovkirill.englishclub.domain.OperationResult
 import ru.rychkovkirill.englishclub.domain.models.User
@@ -64,23 +65,52 @@ class UserRepositoryImpl @Inject constructor(
         first_name: String,
         last_name: String,
         username: String,
-        experience: Int?,
-        rank: String?,
-        hobby: String?,
         media_link: String?
     ): OperationResult<Unit, String?> {
-        TODO("Not yet implemented")
+        return withContext(Dispatchers.IO){
+            try{
+                val tokenHeader = "Bearer ${prefsStorage.getUser()?.get(0).orEmpty()}"
+                val response = apiService.updateUser(tokenHeader, email, UpdateUserRequest(first_name, last_name, username, media_link))
+                if(response.isSuccessful && response.body() != null){
+                    val result = response.body()!!
+                    return@withContext OperationResult.Success(Unit)
+                }
+                else if (response.errorBody() != null) {
+                    val errorObj = JSONObject(response.errorBody()!!.charStream().readText())
+                    return@withContext OperationResult.Error(errorObj.getString("detail"))
+                } else{
+                    return@withContext OperationResult.Error("Что-то пошло не так!")
+                }
+            }catch (e: Exception){
+                return@withContext OperationResult.Error("Ошибка подключения")
+            }
+        }
     }
 
     override suspend fun updateMe(
         first_name: String,
         last_name: String,
         username: String,
-        experience: Int?,
-        rank: String?,
-        hobby: String?,
         media_link: String?
     ): OperationResult<Unit, String?> {
-        TODO("Not yet implemented")
+        return withContext(Dispatchers.IO){
+            try{
+                val tokenHeader = "Bearer ${prefsStorage.getUser()?.get(0).orEmpty()}"
+                val email = "Bearer ${prefsStorage.getUser()?.get(3).orEmpty()}"
+                val response = apiService.updateMe(tokenHeader, UpdateUserRequest(first_name, last_name, username, media_link))
+                if(response.isSuccessful && response.body() != null){
+                    val result = response.body()!!
+                    return@withContext OperationResult.Success(Unit)
+                }
+                else if (response.errorBody() != null) {
+                    val errorObj = JSONObject(response.errorBody()!!.charStream().readText())
+                    return@withContext OperationResult.Error(errorObj.getString("detail"))
+                } else{
+                    return@withContext OperationResult.Error("Что-то пошло не так!")
+                }
+            }catch (e: Exception){
+                return@withContext OperationResult.Error("Ошибка подключения")
+            }
+        }
     }
 }
