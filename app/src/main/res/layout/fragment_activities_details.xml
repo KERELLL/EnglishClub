@@ -71,7 +71,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginHorizontal="10sp"
             android:layout_gravity="center"
-            android:text="Подать заявку"
+            android:text="Отправить ответ"
             android:textAllCaps="false"
             android:textSize="20sp"
             app:backgroundTint="#4885ed"

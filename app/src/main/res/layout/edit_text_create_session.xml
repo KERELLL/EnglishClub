@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/container_title"
+        style="@style/TextInputLayoutStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20sp"
+        android:layout_marginTop="10sp"
+        android:textColorHint="#bfc2c7"
+        app:startIconTint="@color/black"
+        app:boxStrokeColor="#4885ed"
+        app:hintTextColor="#4885ed"
+        app:boxStrokeWidth="2dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Название"
+            android:inputType="text"
+            android:textSize="18sp"
+            android:lines="1"
+            android:textColor="@color/black"
+            android:textCursorDrawable="@color/black" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/container_number"
+            style="@style/TextInputLayoutStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20sp"
+            android:layout_marginTop="10sp"
+            android:textColorHint="#bfc2c7"
+            app:startIconTint="@color/black"
+            app:boxStrokeColor="#4885ed"
+            app:hintTextColor="#4885ed"
+            app:boxStrokeWidth="2dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_number"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Номер"
+                android:inputType="number"
+                android:textSize="18sp"
+                android:lines="1"
+                android:textColor="@color/black"
+                android:textCursorDrawable="@color/black" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/container_description"
+            style="@style/TextInputLayoutStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20sp"
+            android:layout_marginTop="10sp"
+            android:textColorHint="#bfc2c7"
+            app:startIconTint="@color/black"
+            app:boxStrokeColor="#4885ed"
+            app:hintTextColor="#4885ed"
+            app:boxStrokeWidth="2dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_description"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Описание"
+                android:gravity="top"
+                android:textSize="18sp"
+                android:maxLines="5"
+                android:lines="5"
+                android:textColor="@color/black"
+                android:textCursorDrawable="@color/black" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/container_start_date"
+            style="@style/TextInputLayoutStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="10sp"
+            android:textColorHint="#bfc2c7"
+            app:startIconTint="@color/black"
+            app:startIconDrawable="@drawable/ic_calendar"
+            app:boxStrokeColor="#4885ed"
+            app:hintTextColor="#4885ed"
+            app:boxStrokeWidth="2dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_start_date"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Дата начала"
+                android:inputType="none"
+                android:focusable="false"
+                android:textSize="18sp"
+                android:lines="1"
+                android:textColor="@color/black"
+                android:textCursorDrawable="@color/black" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/container_end_date"
+            style="@style/TextInputLayoutStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="20sp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10sp"
+            android:textColorHint="#bfc2c7"
+            app:startIconTint="@color/black"
+            app:startIconDrawable="@drawable/ic_calendar"
+            app:boxStrokeColor="#4885ed"
+            app:hintTextColor="#4885ed"
+            app:boxStrokeWidth="2dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_end_date"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:focusable="false"
+                android:hint="Дата конца"
+                android:inputType="none"
+                android:textSize="18sp"
+                android:lines="1"
+                android:textColor="@color/black"
+                android:textCursorDrawable="@color/black" />
+        </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
+</LinearLayout>

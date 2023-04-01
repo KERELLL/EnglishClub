@@ -18,7 +18,7 @@ interface MainRepository {
 
     suspend fun getShiftInfo(shift_id: Int) : OperationResult<Shift, String?>
 
-    suspend fun addShift(name: String, start_date: String, end_date: String) : OperationResult<Unit, String?>
+    suspend fun addShift(name: String, number: Int, description: String, start_date: String, end_date: String) : OperationResult<Unit, String?>
 
     suspend fun getReservations() : OperationResult<List<Reservation>, String?>
 
@@ -48,7 +48,7 @@ interface MainRepository {
 
     suspend fun responseTask(task_id: Int) : OperationResult<Unit, String?>
 
-    suspend fun submitTask(task_id: Int): OperationResult<Unit, String?>
+    suspend fun submitTask(task_id: Int, answer: String): OperationResult<Unit, String?>
 
     suspend fun addTask(title: String,
                         description: String,

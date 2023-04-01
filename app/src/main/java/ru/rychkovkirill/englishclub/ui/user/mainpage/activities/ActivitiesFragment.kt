@@ -84,16 +84,22 @@ class ActivitiesFragment : Fragment() {
             showAddTaskBottomSheet()
         }
         viewModel.getActiveTasks()
+
+        binding.answerTaskButton.setOnClickListener {
+            findNavController().navigate(R.id.action_activitiesFragmentAdmin_to_checkTaskListFragment)
+        }
     }
 
 
     private fun setUpAdminUI() {
         if (authRepository.getUser()!![2] == "ADMIN") {
             binding.createTask.isVisible = true
-            binding.myTaskButton.isVisible = false
+
         } else {
             binding.createTask.isVisible = false
             binding.allTaskButton.isVisible = false
+            binding.activeTaskButton.isVisible = false
+            binding.answerTaskButton.isVisible = false
         }
     }
 
@@ -121,6 +127,8 @@ class ActivitiesFragment : Fragment() {
             }
         }
     }
+
+
 
     private fun setUpAdapter(){
         if (authRepository.getUser()!![2] == "ADMIN") {
@@ -225,6 +233,8 @@ class ActivitiesFragment : Fragment() {
         }
     }
 
+
+
     private fun subscribeAddTask(){
         viewModel.addTaskResult.observe(viewLifecycleOwner) {
             when (it) {
@@ -281,10 +291,6 @@ class ActivitiesFragment : Fragment() {
             setUpButtonTaskListBackground(it as TextView)
             viewModel.getAllTasks()
         }
-        binding.myTaskButton.setOnClickListener {
-            setUpButtonTaskListBackground(it as TextView)
-            viewModel.getMyTasks()
-        }
     }
 
     private fun setUpButtonTaskListBackground(currentTasksList: TextView){
@@ -292,8 +298,6 @@ class ActivitiesFragment : Fragment() {
             setSelectedColor("ACTIVE")
         } else if(currentTasksList.text == "Все"){
             setSelectedColor("ALL")
-        } else if(currentTasksList.text == "Мои"){
-            setSelectedColor("MY")
         }
     }
 
@@ -303,22 +307,11 @@ class ActivitiesFragment : Fragment() {
             binding.activeTaskButton.setTextColor(Color.WHITE)
             binding.allTaskButton.setBackgroundResource(R.drawable.button_task_background)
             binding.allTaskButton.setTextColor(Color.BLACK)
-            binding.myTaskButton.setBackgroundResource(R.drawable.button_task_background)
-            binding.myTaskButton.setTextColor(Color.BLACK)
-        }else if(currentTaskList == "MY"){
-            binding.activeTaskButton.setBackgroundResource(R.drawable.button_task_background)
-            binding.activeTaskButton.setTextColor(Color.BLACK)
-            binding.allTaskButton.setBackgroundResource(R.drawable.button_task_background)
-            binding.allTaskButton.setTextColor(Color.BLACK)
-            binding.myTaskButton.setBackgroundResource(R.drawable.button_task_selected_background)
-            binding.myTaskButton.setTextColor(Color.WHITE)
         } else if(currentTaskList == "ALL"){
             binding.activeTaskButton.setBackgroundResource(R.drawable.button_task_background)
             binding.activeTaskButton.setTextColor(Color.BLACK)
             binding.allTaskButton.setBackgroundResource(R.drawable.button_task_selected_background)
             binding.allTaskButton.setTextColor(Color.WHITE)
-            binding.myTaskButton.setBackgroundResource(R.drawable.button_task_background)
-            binding.myTaskButton.setTextColor(Color.BLACK)
         }
     }
 

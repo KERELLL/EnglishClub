@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
+import androidx.appcompat.app.AlertDialog
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation.findNavController
@@ -75,8 +77,7 @@ class ActivitiesDetailsFragment : Fragment() {
         binding.tvPoints.text = points + " очков"
 
         binding.responseTaskButton.setOnClickListener {
-            viewModel.responseTask(id!!.toInt())
-
+            setUpAlert()
         }
     }
 
@@ -90,7 +91,7 @@ class ActivitiesDetailsFragment : Fragment() {
 
 
     private fun subscribeResponseTask(){
-        viewModel.responseTaskResult.observe(viewLifecycleOwner) {
+        viewModel.submitTaskResult.observe(viewLifecycleOwner) {
             when (it) {
                 is ViewState.Loading -> {
                 }
@@ -104,12 +105,29 @@ class ActivitiesDetailsFragment : Fragment() {
                 is ViewState.Success -> {
                     Snackbar.make(
                         requireView(),
-                        it.result.toString(),
+                        "Ответ принят!",
                         Snackbar.LENGTH_LONG
                     ).show()
                     findNavController().popBackStack()
                 }
             }
         }
+    }
+
+    private fun setUpAlert(){
+        val builder = AlertDialog.Builder(requireContext(), R.style.AlertDialogTheme)
+            .setTitle("Добавить ответ")
+        val dialogLayout = layoutInflater.inflate(R.layout.edit_text_answer, null)
+        val answer = dialogLayout.findViewById<EditText>(R.id.et_answer)
+        builder.setPositiveButton("Добавить") { dialog, which ->
+            viewModel.submitTask(requireArguments().getString("id")!!.toInt(), answer.toString())
+        }
+            .setNegativeButton("Назад") { dialog, which ->
+                {
+                    dialog.dismiss()
+                }
+            }
+        builder.setView(dialogLayout)
+        builder.show()
     }
 }

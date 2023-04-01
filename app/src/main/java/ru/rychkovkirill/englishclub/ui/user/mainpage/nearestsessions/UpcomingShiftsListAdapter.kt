@@ -33,9 +33,9 @@ class UpcomingShiftsListAdapter : RecyclerView.Adapter<UpcomingShiftsListAdapter
     }
 
     override fun onBindViewHolder(holder: ShiftViewHolder, position: Int) {
-        holder.tvTitle.text = "324"
-        holder.tvName.text = upcomingShiftsList[position].name
-        holder.tvDate.text = upcomingShiftsList[position].start_date + "-" + upcomingShiftsList[position].end_date
+        holder.tvTitle.text = upcomingShiftsList[position].name
+        holder.tvName.text = upcomingShiftsList[position].number.toString() + " номер"
+        holder.tvDate.text = upcomingShiftsList[position].start_date.split('T')[0] + " - " + upcomingShiftsList[position].end_date.split('T')[0]
         holder.itemView.setOnClickListener {
             onItemSelectListener?.invoke(upcomingShiftsList[position])
         }

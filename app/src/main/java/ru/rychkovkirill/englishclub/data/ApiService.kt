@@ -97,7 +97,7 @@ interface ApiService {
         @Body shift: ShiftAddRequest
     ): Response<SuccessResponse>
 
-    @GET("shifts/reservation")
+    @GET("shifts/reservations")
     suspend fun getReservations(
         @Header("Authorization") token : String
     ) : Response<List<ReservationResponseDTO>>
@@ -158,7 +158,7 @@ interface ApiService {
         @Header("Authorization") token : String
     ) : Response<List<ResponseResponseDTO>>
 
-    @GET("tasks/responses/for_check")
+    @GET("tasks/response/list/for_check")
     suspend fun getNotCheckedResponses(
         @Header("Authorization") token : String
     ) : Response<List<ResponseResponseDTO>>
@@ -185,7 +185,8 @@ interface ApiService {
     @PUT("tasks/submit/{task_id}")
     suspend fun submitTask(
         @Header("Authorization") token : String,
-        @Path("task_id") task_id: Int
+        @Path("task_id") task_id: Int,
+        @Body answer: AnswerRequest
     ): Response<SuccessResponse>
 
 }

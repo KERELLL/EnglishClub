@@ -8,6 +8,12 @@
         android:title="Смены"/>
 
     <item
+        android:id="@+id/reservationsFragment"
+        android:icon="@drawable/ic_email"
+        android:enabled="true"
+        android:title="Записи"/>
+
+    <item
         android:id="@+id/activitiesFragmentAdmin"
         android:icon="@drawable/ic_activites"
         android:enabled="true"

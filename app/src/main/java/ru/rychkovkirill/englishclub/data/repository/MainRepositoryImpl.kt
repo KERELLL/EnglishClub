@@ -120,13 +120,15 @@ class MainRepositoryImpl @Inject constructor(
 
     override suspend fun addShift(
         name: String,
+        number: Int,
+        description: String,
         start_date: String,
         end_date: String
     ): OperationResult<Unit, String?> {
         return withContext(Dispatchers.IO) {
             try {
                 val tokenHeader = "Bearer ${prefsStorage.getUser()?.get(0).orEmpty()}"
-                val response = apiService.addShift(tokenHeader, ShiftAddRequest(name, start_date, end_date))
+                val response = apiService.addShift(tokenHeader, ShiftAddRequest(name, number, description, start_date, end_date))
                 if (response.isSuccessful && response.body() != null) {
                     val result = response.body()!!
                     return@withContext OperationResult.Success(Unit)
@@ -168,7 +170,7 @@ class MainRepositoryImpl @Inject constructor(
         return withContext(Dispatchers.IO) {
             try {
                 val tokenHeader = "Bearer ${prefsStorage.getUser()?.get(0).orEmpty()}"
-                val response = apiService.approveResponse(tokenHeader, shift_reservation_id)
+                val response = apiService.approveShiftReservation(tokenHeader, shift_reservation_id)
                 if (response.isSuccessful && response.body() != null) {
                     val result = response.body()!!
                     return@withContext OperationResult.Success(Unit)
@@ -416,11 +418,11 @@ class MainRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun submitTask(task_id: Int): OperationResult<Unit, String?> {
+    override suspend fun submitTask(task_id: Int, answer: String): OperationResult<Unit, String?> {
         return withContext(Dispatchers.IO) {
             try {
                 val tokenHeader = "Bearer ${prefsStorage.getUser()?.get(0).orEmpty()}"
-                val response = apiService.submitTask(tokenHeader, task_id)
+                val response = apiService.submitTask(tokenHeader, task_id, AnswerRequest(answer))
                 if (response.isSuccessful && response.body() != null) {
                     val result = response.body()!!
                     return@withContext OperationResult.Success(Unit)

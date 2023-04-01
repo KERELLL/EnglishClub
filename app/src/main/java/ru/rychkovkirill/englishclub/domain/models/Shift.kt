@@ -2,6 +2,8 @@ package ru.rychkovkirill.englishclub.domain.models
 
 data class Shift(
     val name: String,
+    val number: Int,
+    val description : String,
     val start_date: String,
     val end_date: String,
     val id: Int,

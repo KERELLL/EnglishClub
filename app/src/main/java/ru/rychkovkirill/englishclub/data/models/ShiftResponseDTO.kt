@@ -4,6 +4,8 @@ import ru.rychkovkirill.englishclub.domain.models.Shift
 
 data class ShiftResponseDTO(
     val name: String,
+    val number: Int,
+    val description: String,
     val start_date: String,
     val end_date: String,
     val id: Int,
@@ -11,6 +13,6 @@ data class ShiftResponseDTO(
 )
 fun ShiftResponseDTO.toShift() : Shift{
     return Shift(
-        name, start_date, end_date, id, participants_number
+        name, number, description, start_date, end_date, id, participants_number
     )
 }

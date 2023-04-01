@@ -6,13 +6,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import ru.rychkovkirill.englishclub.domain.OperationResult
-import ru.rychkovkirill.englishclub.domain.models.News
-import ru.rychkovkirill.englishclub.domain.models.Shift
-import ru.rychkovkirill.englishclub.domain.models.Task
+import ru.rychkovkirill.englishclub.domain.models.*
 import ru.rychkovkirill.englishclub.domain.usecase.*
-import ru.rychkovkirill.englishclub.domain.usecase.admin.AddNewsUseCase
-import ru.rychkovkirill.englishclub.domain.usecase.admin.AddTaskUseCase
-import ru.rychkovkirill.englishclub.domain.usecase.admin.GetAllTasksUseCase
+import ru.rychkovkirill.englishclub.domain.usecase.admin.*
 import ru.rychkovkirill.englishclub.ui.ViewState
 import javax.inject.Inject
 
@@ -25,7 +21,15 @@ class MainViewModel @Inject constructor(
     val getActiveTasksUseCase: GetActiveTasksUseCase,
     val addTaskUseCase: AddTaskUseCase,
     val getMyTasksUseCase: GetMyTasksUseCase,
-    val responseTaskUseCase: ResponseTaskUseCase
+    val responseTaskUseCase: ResponseTaskUseCase,
+    val addShiftUseCase: AddShiftUseCase,
+    val getMyShiftsUseCase: GetMyShiftsUseCase,
+    val reserveShiftUseCase: ReserveShiftUseCase,
+    val getReservationsUseCase: GetReservationsUseCase,
+    val approveShiftUseCase: ApproveShiftUseCase,
+    val submitTaskUseCase: SubmitTaskUseCase,
+     val getCheckTasksUseCase: GetCheckTasksUseCase,
+    val checkAnswerUseCase: CheckAnswerUseCase
 ) : ViewModel() {
 
     private val _addNewsResult = MutableLiveData<ViewState<Unit, String?>>()
@@ -35,6 +39,18 @@ class MainViewModel @Inject constructor(
     private val _addTaskResult = MutableLiveData<ViewState<Unit, String?>>()
     val addTaskResult: LiveData<ViewState<Unit, String?>>
         get() = _addTaskResult
+
+    private val _reserveShiftResult = MutableLiveData<ViewState<Unit, String?>>()
+    val reserveShiftResult: LiveData<ViewState<Unit, String?>>
+        get() = _reserveShiftResult
+
+    private val _addShiftResult = MutableLiveData<ViewState<Unit, String?>>()
+    val addShiftResult: LiveData<ViewState<Unit, String?>>
+        get() = _addShiftResult
+
+    private val _approveShiftResult = MutableLiveData<ViewState<Unit, String?>>()
+    val approveShiftResult: LiveData<ViewState<Unit, String?>>
+        get() = _approveShiftResult
 
     private val _newsListResult = MutableLiveData<ViewState<List<News>, String?>>()
     val newsListResult: LiveData<ViewState<List<News>, String?>>
@@ -48,9 +64,21 @@ class MainViewModel @Inject constructor(
     val upcomingShiftsListResult: LiveData<ViewState<List<Shift>, String?>>
         get() = _upcomingShiftsListResult
 
+    private val _checkResponsesListResult = MutableLiveData<ViewState<List<Response>, String?>>()
+    val checkResponsesListResult: LiveData<ViewState<List<Response>, String?>>
+        get() = _checkResponsesListResult
+
+    private val _myShiftsListResult = MutableLiveData<ViewState<List<Shift>, String?>>()
+    val myShiftsListResult: LiveData<ViewState<List<Shift>, String?>>
+        get() = _myShiftsListResult
+
     private val _allTasksListResult = MutableLiveData<ViewState<List<Task>, String?>>()
     val allTasksListResult: LiveData<ViewState<List<Task>, String?>>
         get() = _allTasksListResult
+
+    private val _reservationsListResult = MutableLiveData<ViewState<List<Reservation>, String?>>()
+    val reservationsListResult: LiveData<ViewState<List<Reservation>, String?>>
+        get() = _reservationsListResult
 
     private val _activeTasksListResult = MutableLiveData<ViewState<List<Task>, String?>>()
     val activeTasksListResult: LiveData<ViewState<List<Task>, String?>>
@@ -64,12 +92,76 @@ class MainViewModel @Inject constructor(
     val responseTaskResult: LiveData<ViewState<Unit, String?>>
         get() = _responseTaskResult
 
+    private val _checkTaskResult = MutableLiveData<ViewState<Unit, String?>>()
+    val checkTaskResult: LiveData<ViewState<Unit, String?>>
+        get() = _checkTaskResult
+
+
+    private val _submitTaskResult = MutableLiveData<ViewState<Unit, String?>>()
+    val submitTaskResult: LiveData<ViewState<Unit, String?>>
+        get() = _submitTaskResult
+
 
     fun addNews(title: String, content: String){
         viewModelScope.launch {
             _addNewsResult.value = ViewState.loading()
             val result = addNewsUseCase.invoke(title, content)
             _addNewsResult.value = when (result) {
+                is OperationResult.Error -> ViewState.error(result.data)
+                is OperationResult.Success -> ViewState.success(result.data)
+            }
+        }
+    }
+
+    fun addShift(title: String, number: Int, description: String, start_date: String, end_date: String){
+        viewModelScope.launch {
+            _addShiftResult.value = ViewState.loading()
+            val result = addShiftUseCase.invoke(title, number, description, start_date, end_date)
+            _addShiftResult.value = when (result) {
+                is OperationResult.Error -> ViewState.error(result.data)
+                is OperationResult.Success -> ViewState.success(result.data)
+            }
+        }
+    }
+
+    fun reserveShift(shift_id: Int){
+        viewModelScope.launch {
+            _reserveShiftResult.value = ViewState.loading()
+            val result = reserveShiftUseCase.invoke(shift_id)
+            _reserveShiftResult.value = when (result) {
+                is OperationResult.Error -> ViewState.error(result.data)
+                is OperationResult.Success -> ViewState.success(result.data)
+            }
+        }
+    }
+
+    fun checkTask(id: Int){
+        viewModelScope.launch {
+            _checkTaskResult.value = ViewState.loading()
+            val result = checkAnswerUseCase(id)
+            _checkTaskResult.value = when (result) {
+                is OperationResult.Error -> ViewState.error(result.data)
+                is OperationResult.Success -> ViewState.success(result.data)
+            }
+        }
+    }
+
+    fun getCheckResponses(){
+        viewModelScope.launch {
+            _checkResponsesListResult.value = ViewState.loading()
+            val result = getCheckTasksUseCase.invoke()
+            _checkResponsesListResult.value = when (result) {
+                is OperationResult.Error -> ViewState.error(result.data)
+                is OperationResult.Success -> ViewState.success(result.data)
+            }
+        }
+    }
+
+    fun approveShift(shift_id: Int){
+        viewModelScope.launch {
+            _approveShiftResult.value = ViewState.loading()
+            val result = approveShiftUseCase.invoke(shift_id)
+            _approveShiftResult.value = when (result) {
                 is OperationResult.Error -> ViewState.error(result.data)
                 is OperationResult.Success -> ViewState.success(result.data)
             }
@@ -85,6 +177,16 @@ class MainViewModel @Inject constructor(
             _addTaskResult.value = ViewState.loading()
             val result = addTaskUseCase.invoke(title, description, points, start_date, end_date)
             _addTaskResult.value = when (result) {
+                is OperationResult.Error -> ViewState.error(result.data)
+                is OperationResult.Success -> ViewState.success(result.data)
+            }
+        }
+    }
+    fun submitTask(id: Int, answer: String){
+        viewModelScope.launch {
+            _submitTaskResult.value = ViewState.loading()
+            val result = submitTaskUseCase.invoke(id, answer)
+            _submitTaskResult.value = when (result) {
                 is OperationResult.Error -> ViewState.error(result.data)
                 is OperationResult.Success -> ViewState.success(result.data)
             }
@@ -113,6 +215,17 @@ class MainViewModel @Inject constructor(
         }
     }
 
+    fun getReservations(){
+        viewModelScope.launch {
+            _reservationsListResult.value = ViewState.loading()
+            val result = getReservationsUseCase.invoke()
+            _reservationsListResult.value = when (result) {
+                is OperationResult.Error -> ViewState.error(result.data)
+                is OperationResult.Success -> ViewState.success(result.data)
+            }
+        }
+    }
+
     fun getNewsInfo(newsId: Int){
         viewModelScope.launch {
             _newsInfoResult.value = ViewState.loading()
@@ -129,6 +242,17 @@ class MainViewModel @Inject constructor(
             _upcomingShiftsListResult.value = ViewState.loading()
             val result = getUpcomingShiftsUseCase.invoke()
             _upcomingShiftsListResult.value = when (result) {
+                is OperationResult.Error -> ViewState.error(result.data)
+                is OperationResult.Success -> ViewState.success(result.data)
+            }
+        }
+    }
+
+    fun getMyShifts(){
+        viewModelScope.launch {
+            _myShiftsListResult.value = ViewState.loading()
+            val result = getMyShiftsUseCase.invoke()
+            _myShiftsListResult.value = when (result) {
                 is OperationResult.Error -> ViewState.error(result.data)
                 is OperationResult.Success -> ViewState.success(result.data)
             }
